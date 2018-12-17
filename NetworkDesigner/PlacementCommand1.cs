@@ -4,14 +4,18 @@
 +--------------------------------------------------------------------------------------*/
 
 #region System Namespace
+
 using System;
-#endregion
+
+#endregion System Namespace
 
 #region Bentley Namespace
+
 using BCOM = Bentley.Interop.MicroStationDGN;
 using BG = Bentley.Geometry;
 using BM = Bentley.MicroStation;
-#endregion
+
+#endregion Bentley Namespace
 
 namespace NetworkDesigner
 {
@@ -19,7 +23,6 @@ namespace NetworkDesigner
     {
         internal PlacementCommand1()
         {
-
         }
 
         internal void StartPlacementCommand(string unparsed = "")
@@ -81,6 +84,7 @@ namespace NetworkDesigner
             //Enables Accusnap for this command if the user has it enabled in Microstation
             Program.MSApp.CommandState.EnableAccuSnap();
         }
-        #endregion
+
+        #endregion IPrimitiveCommandEvents
     }
 }

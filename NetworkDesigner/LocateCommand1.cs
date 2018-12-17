@@ -4,14 +4,18 @@
 +--------------------------------------------------------------------------------------*/
 
 #region System Namespace
+
 using System;
-#endregion
+
+#endregion System Namespace
 
 #region Bentley Namespace
+
 using BCOM = Bentley.Interop.MicroStationDGN;
 using BG = Bentley.Geometry;
 using BM = Bentley.MicroStation;
-#endregion
+
+#endregion Bentley Namespace
 
 namespace NetworkDesigner
 {
@@ -29,11 +33,10 @@ namespace NetworkDesigner
 
         public LocateCommand1()
         {
-
-
         }
 
         #region ILocateCommandEvents
+
         /// <summary>
         /// ILocateCommandEvents Start method.
         /// </summary>
@@ -66,7 +69,6 @@ namespace NetworkDesigner
         /// <param name="drawMode"></param>
         public void Dynamics(ref BCOM.Point3d point, BCOM.View view, BCOM.MsdDrawingMode drawMode)
         {
-
         }
 
         /// <summary>
@@ -74,7 +76,6 @@ namespace NetworkDesigner
         /// </summary>
         public void LocateFailed()
         {
-
         }
 
         /// <summary>
@@ -85,7 +86,6 @@ namespace NetworkDesigner
         /// <param name="accept"></param>
         public void LocateFilter(BCOM.Element element, ref BCOM.Point3d point, ref bool accepted)
         {
-
         }
 
         /// <summary>
@@ -96,6 +96,7 @@ namespace NetworkDesigner
             Cleanup();
             Program.MSApp.CommandState.StartDefaultCommand();
         }
-        #endregion
+
+        #endregion ILocateCommandEvents
     }
 }

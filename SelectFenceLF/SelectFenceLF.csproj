@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>SelectFenceLF</RootNamespace>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\csharp\CSharpTree\CSharpTree.csproj" />
+    <ProjectReference Include="..\NetworkDesigner\NetworkDesigner.csproj" />
+  </ItemGroup>
+
+</Project>

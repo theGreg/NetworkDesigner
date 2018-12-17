@@ -11,8 +11,8 @@
         RootKeyinTable, but an entry for a subtable is labeled as KeyinTable.-->
   <RootKeyinTable ID="root">
     <Keyword SubtableRef="NetworkDesigner"
-            CommandClass="MacroCommand" CommandWord="NetworkDesigner" >
-      <Options Required="true"/>
+            CommandClass="MacroCommand" CommandWord="NetworkDesigner">
+      <Options Required="true" />
     </Keyword>
   </RootKeyinTable>
 
@@ -23,7 +23,7 @@
       <Keyword CommandWord="LocateCommand1"></Keyword>
       <Keyword CommandWord="PlacementCommand1"></Keyword>
       <Keyword CommandWord="Form1"></Keyword>
-    
+
       <Keyword CommandWord="Form2"></Keyword>
     </KeyinTable>
   </SubKeyinTables>
@@ -31,16 +31,14 @@
   <!--Define a mapping from key-in to the method that handles the key-in.-->
   <KeyinHandlers>
     <KeyinHandler Keyin="NetworkDesigner OPEN"
-        Function="NetworkDesigner.KeyinCommands.CommandKeyin"/>
+        Function="NetworkDesigner.KeyinCommands.CommandKeyin" />
     <KeyinHandler Keyin="NetworkDesigner LocateCommand1"
-        Function="NetworkDesigner.KeyinCommands.LocateCommand1Keyin"/>
+        Function="NetworkDesigner.KeyinCommands.LocateCommand1Keyin" />
   <KeyinHandler Keyin="NetworkDesigner PlacementCommand1"
-        Function="NetworkDesigner.KeyinCommands.PlacementCommand1Keyin"/>
+        Function="NetworkDesigner.KeyinCommands.PlacementCommand1Keyin" />
   <KeyinHandler Keyin="NetworkDesigner Form1"
-        Function="NetworkDesigner.KeyinCommands.Form1Keyin"/>
-  
+        Function="NetworkDesigner.KeyinCommands.Form1Keyin" />
   <KeyinHandler Keyin="NetworkDesigner Form2"
-        Function="NetworkDesigner.KeyinCommands.Form2Keyin"/>
+        Function="NetworkDesigner.KeyinCommands.Form2Keyin" />
 </KeyinHandlers>
 </KeyinTree>
-

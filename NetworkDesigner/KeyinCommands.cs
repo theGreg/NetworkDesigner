@@ -4,8 +4,10 @@
 +--------------------------------------------------------------------------------------*/
 
 #region System Namespace
+
 using System;
-#endregion
+
+#endregion System Namespace
 
 namespace NetworkDesigner
 {

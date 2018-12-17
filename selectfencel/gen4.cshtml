@@ -1,0 +1,191 @@
+﻿//
+// Created by SharpDevelop.
+// User: Gregory Mavhunga
+// Date: 2018/12/13
+// Time: 12:11 AM
+// 
+// To change this template use Tools | Options | Coding | Edit Standard Headers.
+//
+public static class Module1
+{
+
+	//ByVal cellType As String)
+	public static void selectTRFRzoneShapes()
+	{
+		Element oElem = default(Element);
+		Fence ofence = default(Fence);
+		ElementEnumerator oEnum = default(ElementEnumerator);
+		//Dim cellName As String
+		//cellName = "001"
+		ActiveModelReference.UnselectAllElements();
+		ofence = ActiveDesignFile.Fence;
+		oEnum = ofence.GetContents;
+
+		while (oEnum.MoveNext) {
+			oElem = oEnum.Current;
+
+			if ((oElem.type == msdElementTypeShape)) {
+				if ((oElem.Level.Name == "Level 11")) {
+					oElem.Redraw(MsdDrawingModeHilite);
+					ActiveModelReference.SelectElement(oElem);
+				}
+			}
+		}
+
+	}
+	// As clsDataZone 'ByVal cellType As String)
+	public static void selectZons(ref ElementEnumerator oEnum, ref clsDataZone oSelZone)
+	{
+		Element oElem = default(Element);
+
+
+		Collection MVFlyingStays = default(Collection);
+		//MVFlyingStay
+
+		ActiveModelReference.UnselectAllElements();
+
+		while (oEnum.MoveNext) {
+			oElem = oEnum.Current;
+			//Debug.Print CStr(oEnum.Current.ID.high) & CStr(oEnum.Current.ID.low)
+
+			switch (oElem.type) {
+				case msdElementTypeCellHeader:
+					//Cells
+
+					switch (oElem.AsCellElement.Name) {
+						case "001":
+							//LVStays
+							oSelZone.LVStays.Add(oElem, Convert.ToString(oElem.ID.low));
+							break;
+						case "002":
+							//LVStruts
+							oSelZone.LVStruts.Add(oElem, Convert.ToString(oElem.ID.low));
+							break;
+						case "003":
+							//MVStays
+							oSelZone.MVStays.Add(oElem, Convert.ToString(oElem.ID.low));
+							break;
+						case "004":
+							//MVStruts
+							oSelZone.MVStruts.Add(oElem, Convert.ToString(oElem.ID.low));
+							break;
+						case "005":
+							//TRFRCircles
+							oSelZone.TRFRCircles.Add(oElem, Convert.ToString(oElem.ID.low));
+							break;
+						case "006":
+							//TRFRNameplates"
+							oSelZone.TRFRNameplates.Add(oElem, Convert.ToString(oElem.ID.low));
+							break;
+						case "009":
+							//LVpoles"
+							oSelZone.LVpoles.Add(oElem, Convert.ToString(oElem.ID.low));
+							break;
+						case "010":
+							//MVpoles"
+							oSelZone.mvpoles.Add(oElem, Convert.ToString(oElem.ID.low));
+							break;
+						case "011":
+							//MVSharingPoles
+							oSelZone.MVSharingPoles.Add(oElem, Convert.ToString(oElem.ID.low));
+							break;
+						case "012":
+							//KickerPoles"
+							oSelZone.KickerPoles.Add(oElem, Convert.ToString(oElem.ID.low));
+							break;
+						case "015":
+							//LVFlyingStays"
+							oSelZone.LVFlyingStays.Add(oElem, Convert.ToString(oElem.ID.low));
+							break;
+						case "016":
+							//LVShortStays
+							oSelZone.LVShortStays.Add(oElem, Convert.ToString(oElem.ID.low));
+							break;
+						case "017":
+							//MVFlyingStays"
+							oSelZone.MVFlyingStays.Add(oElem, Convert.ToString(oElem.ID.low));
+							break;
+						case "018":
+							//MVShortStays
+							oSelZone.MVShortStays.Add(oElem, Convert.ToString(oElem.ID.low));
+							break;
+						case "035":
+							//MVFuseIsolators
+							oSelZone.MVFuseIsolators.Add(oElem, Convert.ToString(oElem.ID.low));
+							break;
+						case "TXTCS":
+							//TRFRs
+							oSelZone.TRFRs.Add(oElem, Convert.ToString(oElem.ID.low));
+							break;
+						default:
+							oSelZone.elseCellElements.Add(oElem, Convert.ToString(oElem.ID.low));
+							break;
+					}
+					break;
+
+				case msdElementTypeLine:
+
+					switch (oElem.Level.Name) {
+						case "Level 18":
+							// Airdac
+							oSelZone.Airdac.Add(oElem, Convert.ToString(oElem.ID.low));
+							break;
+						//Debug.Print CStr(oEnum.Current.ID.high) & CStr(oEnum.Current.ID.low)
+						case "Level 25":
+							//LVConductor
+							oSelZone.LVConductor.Add(oElem, Convert.ToString(oElem.ID.low));
+							break;
+						case "Level 29":
+							//MVConductor
+							oSelZone.MVConductor.Add(oElem, Convert.ToString(oElem.ID.low));
+							break;
+						default:
+							oSelZone.elseLineElements.Add(oElem, Convert.ToString(oElem.ID.low));
+							break;
+					}
+					break;
+
+				case msdElementTypeShape:
+
+					switch (oElem.Level.Name) {
+						case "Level 11":
+							//TrfrShapes
+							oSelZone.TrfrShapes.Add(oElem, Convert.ToString(oElem.ID.low));
+							break;
+						default:
+							oSelZone.elseShapeElements.Add(oElem, Convert.ToString(oElem.ID.low));
+							break;
+					}
+					break;
+
+				case (msdElementTypeText):
+
+					switch (oElem.Level.Name) {
+						case "Level 3":
+							//houseText
+							oSelZone.houseText.Add(oElem, Convert.ToString(oElem.ID.low));
+							break;
+						default:
+							oSelZone.elseTextElements.Add(oElem, Convert.ToString(oElem.ID.low));
+							break;
+
+					}
+					break;
+
+				default:
+					oSelZone.elseElements.Add(oElem, Convert.ToString(oElem.ID.low));
+					break;
+			}
+
+		}
+
+
+		Debug.Print(oSelZone.ToString);
+		Debug.Print(oSelZone.mergedMVPolesCollection.count);
+
+		Debug.Print(oSelZone.printCoordinatesMVPoles);
+		Debug.Print(oSelZone.printCoordinatesMVLines);
+
+	}
+
+}

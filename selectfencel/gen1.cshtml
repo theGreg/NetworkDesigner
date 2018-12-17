@@ -1,0 +1,71 @@
+﻿//
+// Created by SharpDevelop.
+// User: Gregory Mavhunga
+// Date: 2018/12/13
+// Time: 12:11 AM
+// 
+// To change this template use Tools | Options | Coding | Edit Standard Headers.
+//
+public static class Module1
+{
+
+
+	public static void selectConductor(string conType)
+	{
+		Element oElem = default(Element);
+		Fence ofence = default(Fence);
+		ElementEnumerator oEnum = default(ElementEnumerator);
+		int color = 0;
+		string levelName = null;
+		bool stats = false;
+		stats = false;
+
+		switch (conType) {
+			case "Service Cable":
+				color = 0;
+				levelName = "Level 18";
+				break;
+			case "LV Lines":
+				color = 2;
+				levelName = "Level 25";
+				break;
+			case "MV Lines":
+				color = 3;
+				levelName = "Level 29";
+				break;
+			case "Stats":
+				stats = true;
+				break;
+			default:
+
+				Message.Show("Invalid conductor");
+				break;
+		}
+		ActiveModelReference.UnselectAllElements();
+
+		ofence = ActiveDesignFile.Fence;
+		oEnum = ofence.GetContents;
+
+		while (oEnum.MoveNext) {
+			oElem = oEnum.Current;
+			if ((oElem.type == msdElementTypeLine | oElem.type == msdElementTypeLineString)) {
+				if (!stats) {
+					if ((oElem.color == color & oElem.Level.Name == levelName)) {
+						oElem.Redraw(MsdDrawingModeHilite);
+						ActiveModelReference.SelectElement(oElem);
+					}
+				} else {
+					if ((oElem.color == color & oElem.Level.Name == levelName)) {
+						oElem.Redraw(MsdDrawingModeHilite);
+						ActiveModelReference.SelectElement(oElem);
+					}
+				}
+
+			}
+		}
+	}
+
+
+
+
+}

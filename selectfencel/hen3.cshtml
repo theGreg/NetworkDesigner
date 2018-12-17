@@ -1,0 +1,65 @@
+﻿//
+// Created by SharpDevelop.
+// User: Gregory Mavhunga
+// Date: 2018/12/13
+// Time: 12:11 AM
+// 
+// To change this template use Tools | Options | Coding | Edit Standard Headers.
+//
+public static class Module1
+{
+
+	public static void SelectAllZones()
+	{
+		Point3d startPoint = default(Point3d);
+		Point3d point = default(Point3d);
+		Point3d point2 = default(Point3d);
+		long lngTemp = 0;
+
+		//   Coordinates are in master units
+		startPoint.X = 1648.35785518146;
+		startPoint.Y = -3530618.73250201;
+		startPoint.Z = 0.0;
+
+		//   Send points to simulate a down-drag-up action
+		point.X = startPoint.X;
+		point.Y = startPoint.Y;
+		point.Z = startPoint.Z;
+		point2.X = point.X + 6.8212103E-13;
+		point2.Y = point.Y - 30.9071755637415;
+		point2.Z = point.Z;
+		CadInputQueue.SendDragPoints(point, point2, 1);
+
+		//   Start a command
+		CadInputQueue.SendCommand("DIALOG CMDBROWSE");
+
+		//   Send a keyin that can be a command string
+
+		CadInputQueue.SendCommand("MDL SILENTLOAD SELECTBY dialog");
+
+		CadInputQueue.SendCommand("DIALOG SELECTBY");
+
+		//    a variable associated with a dialog box
+
+		SetCExpressionValue("selectorGlobals.colorButton", -1, "SELECTBY");
+
+		SetCExpressionValue("selectorGlobals.color", 7, "SELECTBY");
+
+		SetCExpressionValue("selectorGlobals.color", 7, "SELECTBY");
+
+		CadInputQueue.SendCommand("SELECTBY LEVEL Level 11");
+
+		SelectAllZonesModalHandler modalHandler = new SelectAllZonesModalHandler();
+		AddModalDialogEventsHandler(modalHandler);
+
+		//   The following statement opens modal dialog "Alert"
+
+		CadInputQueue.SendCommand("SELECTBY EXECUTE");
+
+		RemoveModalDialogEventsHandler(modalHandler);
+		CommandState.StartDefaultCommand();
+
+
+	}
+
+}

@@ -1,0 +1,150 @@
+﻿//
+// Created by SharpDevelop.
+// User: Gregory Mavhunga
+// Date: 2018/12/13
+// Time: 12:11 AM
+// 
+// To change this template use Tools | Options | Coding | Edit Standard Headers.
+//
+public static class Module1
+{
+
+	public static string GetTree(Collection conductorList, Collection polesList)
+	{
+
+		string @out = null;
+
+	}
+	public static Collection getRMDPoints()
+	{
+		//Matrix(fenceFlashOrigin As Point3d) As Matrix3d
+
+		Collection polesarr = default(Collection);
+		Point3d p = default(Point3d);
+		Point3d pp = default(Point3d);
+		p = getFlashOrigin();
+		polesarr = new Collection();
+		long n = 0;
+		n = 1;
+		string s = null;
+		CellElement cell = default(CellElement);
+		Collection xCoords = default(Collection);
+		xCoords = new Collection();
+		foreach ( cell in mLVpoles) {
+
+			pp.X = cell.Origin.X + (0 - p.X);
+			pp.Y = cell.Origin.Y + (0 - p.Y);
+			pp.Z = 0;
+
+			pp.X = pp.X / 4;
+			pp.Y = pp.Y / 4;
+			pp.Y = -pp.Y;
+			pp.Z = pp.Z;
+
+			polesarr.Add(pp, Convert.ToString(cell.ID.low));
+			xCoords.Add(pp.X, Convert.ToString(cell.ID.low));
+
+
+
+			//cell.Origin = p
+			s = s + "N" + Convert.ToString(n) + " ";
+			n = n + 1;
+			s = s + "N" + Convert.ToString(n) + Constants.vbCrLf;
+		}
+		//Debug.Print s
+
+		ReticMaster.App rmd = default(ReticMaster.App);
+		rmd = new ReticMaster.App();
+
+		return xCoords;
+	}
+
+	public static Point3d getFlashOrigin()
+	{
+		double minX = 0;
+		double maxY = 0;
+		long i = 0;
+		double zcoord = 0;
+		zcoord = mZoneShape.Vertex(1).Z;
+		//elm.Vertex(1).z
+		minX = 1.7976931348623E+308;
+		maxY = -1.7976931348623E+308;
+
+		for (i = 1; i <= mZoneShape.VerticesCount; i++) {
+			if (mZoneShape.Vertex(i).X < minX)
+				minX = mZoneShape.Vertex(i).X;
+			if (mZoneShape.Vertex(i).Y > maxY)
+				maxY = mZoneShape.Vertex(i).Y;
+		}
+
+		Point3d flashOrigin = default(Point3d);
+		flashOrigin.X = minX;
+		flashOrigin.Y = maxY;
+		flashOrigin.Z = zcoord;
+		Debug.Print(Convert.ToString(minX), Convert.ToString(maxY));
+		return flashOrigin;
+	}
+	public static Collection mergedMVPolesCollection()
+	{
+		//(ByVal col1 As Collection, ByVal col2 As Collection) As Collection
+		//Add items from col2 to col1 and return the result
+		//ByVal means we are only looking at copies of the collections (the values within them)
+		//The function returns a NEW merged collection
+		Collection mvpoles = default(Collection);
+		Collection mvlvpoles = default(Collection);
+		mvpoles = mMVpoles;
+		mvlvpoles = mMVSharingPoles;
+		Debug.Print(mvpoles.count);
+
+		Element el = default(Element);
+		// col2.count
+		foreach ( el in mvlvpoles) {
+			mvpoles.Add(el, Convert.ToString(el.ID.low));
+		}
+		Debug.Print(mvpoles.count);
+
+		return mvpoles;
+		//set return value
+	}
+	public static string ToString()
+	{
+
+		//This function needs to be custom made in any case, this works for non -object members
+		string s = null;
+
+
+
+		s = "LVStays = " + Convert.ToString(mLVStays.count) + Constants.vbCrLf + "LVStruts = " + Convert.ToString(mLVStruts.count) + Constants.vbCrLf + "MVStays = " + Convert.ToString(mMVStays.count) + Constants.vbCrLf + "MVStruts = " + Convert.ToString(mMVStruts.count) + Constants.vbCrLf + "TRFRCircles = " + Convert.ToString(mTRFRCircles.count) + Constants.vbCrLf + "TRFRNameplates = " + Convert.ToString(mTRFRNameplates.count) + Constants.vbCrLf + "LVpoles = " + Convert.ToString(mLVpoles.count) + Constants.vbCrLf + "MVpoles = " + Convert.ToString(mMVpoles.count) + Constants.vbCrLf + "MVSharingPoles = " + Convert.ToString(mMVSharingPoles.count) + Constants.vbCrLf + "KickerPoles = " + Convert.ToString(mKickerPoles.count) + Constants.vbCrLf + "LVFlyingStays = " + Convert.ToString(mLVFlyingStays.count) + Constants.vbCrLf + "LVShortStays = " + Convert.ToString(mLVShortStays.count) + Constants.vbCrLf + "MVFlyingStays = " + Convert.ToString(mMVFlyingStays.count) + Constants.vbCrLf + "MVShortStays = " + Convert.ToString(mMVShortStays.count) + Constants.vbCrLf + "MVFuseIsolators = " + Convert.ToString(mMVFuseIsolators.count) + Constants.vbCrLf + "TRFRs = " + Convert.ToString(mTRFRs.count) + Constants.vbCrLf + "houseText = " + Convert.ToString(mHouseText.count) + Constants.vbCrLf + "TrfrShapes = " + Convert.ToString(mTrfrShapes.count) + Constants.vbCrLf + "Airdac = " + Convert.ToString(mAirdac.count) + Constants.vbCrLf + "LVConductor = " + Convert.ToString(mLVConductor.count) + Constants.vbCrLf + "MVConductor = " + Convert.ToString(mMVConductor.count) + Constants.vbCrLf + "elseCellElements = " + Convert.ToString(mElseCellElements.count) + Constants.vbCrLf + "elseTextElements = " + Convert.ToString(mElseTextElements.count) + Constants.vbCrLf + "elseLineElements = " + Convert.ToString(mElseLineElements.count) + Constants.vbCrLf + "elseShapeElements = " + Convert.ToString(mElseShapeElements.count) + Constants.vbCrLf + "elseElements = " + Convert.ToString(mElseElements.count);
+		return s;
+
+	}
+
+	public static string printCoordinatesMVPoles()
+	{
+		string s = null;
+		string delimiter = null;
+		string header = null;
+		delimiter = ",";
+		header = "Element ID,Cell Origin X,Cell origin Y,Cell Origin Z" + Constants.vbCrLf;
+		s = header;
+		Element el = default(Element);
+		foreach ( el in mMVpoles) {
+			s = s + el.ID.low + "," + el.AsCellElement.Origin.X + "," + el.AsCellElement.Origin.Y + "," + el.AsCellElement.Origin.Z + Constants.vbCrLf;
+		}
+		return s;
+	}
+
+	public static string printCoordinatesMVLines()
+	{
+		string s = null;
+		string header = null;
+		Element el = default(Element);
+		header = "Element ID,Start point X,Start point Y,End Point X,End Point Y" + Constants.vbCrLf;
+		s = header;
+		foreach ( el in mMVConductor) {
+			s = s + el.ID.low + "," + el.AsLineElement.startPoint.X + "," + el.AsLineElement.startPoint.Y + "," + el.AsLineElement.EndPoint.X + "," + el.AsLineElement.EndPoint.Y + Constants.vbCrLf;
+		}
+		return s;
+	}
+
+}

@@ -67,30 +67,38 @@ namespace NetworkDesigner
             selectPolesComboBox.Items.Add("MV Struts");
             selectPolesComboBox.Items.Add("MV Flying Stays");
             selectPolesComboBox.SelectedIndex = 0;
+
+            textBox1.Text = "Welcome";
          
         }
 
         private void SelectTRFRsBtn_Click(object sender, EventArgs e)
         {
-            if (CommonUtils.ValidFenceDefined())
+            if (!CommonUtils.ValidFenceDefined())
+            {
+                MessageBox.Show("zarrarfhjjhhigihjsbkm - No fence mi bruh");
                 return;
+            }
+
+            CommonUtils.selectNormalCells("TRFRS");
             
-            MessageBox.Show("zarrarfhigihjsbkm");
+            
         }
 
         private void selectAllBtn_Click(object sender, EventArgs e)
         {
-
+            Program.MSApp.CadInputQueue.SendKeyin("LOCK FENCE INSIDE");
+            Program.MSApp.CadInputQueue.SendKeyin("Fence Selection New");
         }
 
         private void deSelectAllBtn_Click(object sender, EventArgs e)
         {
-
+            Program.MSApp.ActiveModelReference.UnselectAllElements();
         }
 
         private void selectSettingsBtn_Click(object sender, EventArgs e)
         {
-            Form2.Form2Form.Show();
+            Program.MSApp.CadInputQueue.SendKeyin("NetworkDesigner Form2");// Form2.Form2Form.Show();
         }
 
         private void allPhaseSummaryBtn_Click(object sender, EventArgs e)
@@ -100,22 +108,9 @@ namespace NetworkDesigner
 
         private void phaseCBtn_Click(object sender, EventArgs e)
         {
+            string btnTag = ((Button)sender).Tag.ToString();
 
-        }
-
-        private void PhaseBBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void PhaseABtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void SelectAllPhasesBtn_Click(object sender, EventArgs e)
-        {
-
+            CommonUtils.selectOnlyPhases(btnTag);
         }
 
         private void selectConductorBtn_Click(object sender, EventArgs e)
@@ -172,10 +167,13 @@ namespace NetworkDesigner
 //End Sub
         private void AlgorithmBtn_Click(object sender, EventArgs e)
         {
-            if (CommonUtils.ValidFenceDefined()) ;
-            // SelectOnlyPhases(true, false, false);
-            else
+            if (!CommonUtils.ValidFenceDefined()) ;
+            {
                 MessageBox.Show("No fence defined");
+                return;
+            }
+            
+                
         }
 
         private void exportToExcelBtn_Click(object sender, EventArgs e)
@@ -190,7 +188,7 @@ namespace NetworkDesigner
 
         private void clearBtn_Click(object sender, EventArgs e)
         {
-
+            this.textBox1.Text = string.Empty;
         }
 
         private void getTRFRTextBtn_Click(object sender, EventArgs e)

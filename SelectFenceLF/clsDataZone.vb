@@ -2,9 +2,6 @@
 Option Explicit
 '// Class: clsDataZone
 '// A class for...
-Public Class clsDataZone
-	
-
 Private mZoneShape As ShapeElement
 Private mLVStays As Collection
 Private mLVStruts As Collection
@@ -62,16 +59,7 @@ Private Sub Class_Initialize()
      mElseElements = New Collection '//...(Type = Collection)
 End Sub
 
-Private m_LVStays As List of (Element)
-Public Property LVStays As List of (Element)
-	Get
-		Return m_LVStays
-	End Get
-	Set(value As List of (Element))
-		m_LVStays = value
-	End Set
-End Property
-Public Property Get LVStays() As List
+Public Property Get LVStays() As Collection
      LVStays = mLVStays
 End Property
 Public Property  LVStays(value As Collection)
@@ -429,6 +417,6 @@ Private Sub Class_Terminate()
      mElseElements = Nothing '//...(Type = Collection)
     
 End Sub
-End Class
+
 
 

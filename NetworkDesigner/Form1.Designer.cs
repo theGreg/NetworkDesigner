@@ -113,9 +113,10 @@ namespace NetworkDesigner
             this.selectAllPhasesBtn.Name = "selectAllPhasesBtn";
             this.selectAllPhasesBtn.Size = new System.Drawing.Size(63, 40);
             this.selectAllPhasesBtn.TabIndex = 12;
+            this.selectAllPhasesBtn.Tag = "RWB";
             this.selectAllPhasesBtn.Text = "Select All";
             this.selectAllPhasesBtn.UseVisualStyleBackColor = true;
-            this.selectAllPhasesBtn.Click += new System.EventHandler(this.SelectAllPhasesBtn_Click);
+            this.selectAllPhasesBtn.Click += new System.EventHandler(this.phaseCBtn_Click);
             // 
             // phaseCBtn
             // 
@@ -123,6 +124,7 @@ namespace NetworkDesigner
             this.phaseCBtn.Name = "phaseCBtn";
             this.phaseCBtn.Size = new System.Drawing.Size(63, 40);
             this.phaseCBtn.TabIndex = 11;
+            this.phaseCBtn.Tag = "Blue";
             this.phaseCBtn.Text = "Phase C (Blue)";
             this.phaseCBtn.UseVisualStyleBackColor = true;
             this.phaseCBtn.Click += new System.EventHandler(this.phaseCBtn_Click);
@@ -133,9 +135,10 @@ namespace NetworkDesigner
             this.phaseBBtn.Name = "phaseBBtn";
             this.phaseBBtn.Size = new System.Drawing.Size(63, 40);
             this.phaseBBtn.TabIndex = 10;
+            this.phaseBBtn.Tag = "White";
             this.phaseBBtn.Text = "Phase B (White)";
             this.phaseBBtn.UseVisualStyleBackColor = true;
-            this.phaseBBtn.Click += new System.EventHandler(this.PhaseBBtn_Click);
+            this.phaseBBtn.Click += new System.EventHandler(this.phaseCBtn_Click);
             // 
             // phaseABtn
             // 
@@ -143,9 +146,10 @@ namespace NetworkDesigner
             this.phaseABtn.Name = "phaseABtn";
             this.phaseABtn.Size = new System.Drawing.Size(63, 40);
             this.phaseABtn.TabIndex = 9;
+            this.phaseABtn.Tag = "Red";
             this.phaseABtn.Text = "Phase A (Red)";
             this.phaseABtn.UseVisualStyleBackColor = true;
-            this.phaseABtn.Click += new System.EventHandler(this.PhaseABtn_Click);
+            this.phaseABtn.Click += new System.EventHandler(this.phaseCBtn_Click);
             // 
             // allPhaseSummaryBtn
             // 

@@ -30,44 +30,12 @@ namespace NetworkDesigner
     public partial class Form2 : Form
 #else
     [System.ComponentModel.DesignerCategory("code")]
-    public partial class Form2 : BMW.Adapter, BWD.IDockChangeListener
+    public partial class Form2 : BMW.Adapter
 #endif
     {
         internal Form2()
         {
             InitializeComponent();
         }
-
-        #region Implement IDockChangeListner
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="newParent"></param>
-        public void OnUndocked(Control newParent)
-        {
-
-        }
-
-        public void OnDocked(Control newParent, DockStyle where)
-        {
-
-        }
-
-        public void OnDocking(Control newParent, DockStyle where)
-        {
-
-        }
-
-        public void OnUndocking(Control newParent)
-        {
-
-        }
-
-        public void OnParentClosing(System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-        #endregion
-
     }
 }

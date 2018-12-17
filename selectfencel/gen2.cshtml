@@ -1,0 +1,38 @@
+﻿//
+// Created by SharpDevelop.
+// User: Gregory Mavhunga
+// Date: 2018/12/13
+// Time: 12:11 AM
+// 
+// To change this template use Tools | Options | Coding | Edit Standard Headers.
+//
+public static class Module1
+{
+
+	public static void GetTransformerCellText(CellElement ECell, string TrfrName, string Rating)
+	{
+		ElementEnumerator oEE1 = default(ElementEnumerator);
+		Element AElement1 = default(Element);
+		string Txt = null;
+		string myString = null;
+		oEE1 = ECell.GetSubElements;
+		while ((oEE1.MoveNext)) {
+			AElement1 = oEE1.Current;
+			if ((AElement1.IsCellElement)) {
+				GetTransformerCellText(AElement1, TrfrName, Rating);
+			} else if (AElement1.IsTextElement) {
+				Txt = AElement1.AsTextElement.Text;
+				if (Strings.InStr(Strings.UCase(Txt), "KVA") > 0) {
+					Rating = AElement1.AsTextElement.Text;
+					myString = Strings.Left(Rating, Strings.Len(Rating) - 3);
+					Rating = myString;
+				} else {
+					TrfrName = AElement1.AsTextElement.Text;
+				}
+			}
+		}
+
+
+	}
+
+}
